@@ -233,7 +233,7 @@ class Vp_Basis_Test():
         with open(f'{target_Path}/INCAR', 'w') as W_File:
             W_File.writelines(lines)
 
-    def KPOINTS(self):
+    def OLD_KPOINTS(self):
         Check_out_Word('Making KPOINTS')
         print()
         target_Path = self.target_Path
@@ -246,6 +246,14 @@ class Vp_Basis_Test():
         ]
         with open(f'{target_Path}/KPOINTS', 'w') as W_File:
             W_File.writelines(lines)
+
+    def KPOINTS(self):
+        target_Path = self.target_Path
+        Check_out_Word('Making KPOINTS')
+        print()
+        os.chdir(f'{target_Path}')
+        os.system("vaspkit -task 102 -kpr 0.02")
+        os.chdir("../../")
         
     def vasppbs(self, mechine, ppn):
         Check_out_Word('Making vasp6.pbs')

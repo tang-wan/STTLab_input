@@ -7,7 +7,7 @@ sys.path.append('/home/tangtang89/Example_Lab/')
 from Tools import MKdir, Check_out_Word, Process_Word # type: ignore
 # ========================================================
 
-def KPOINT(vasp_type=None, grid=(24, 24, 1), target_Path=None):
+def KPOINTS_manual(vasp_type=None, grid=(24, 24, 1), target_Path=None):
     
     Check_out_Word('Making KPOINTS')
     
@@ -39,6 +39,22 @@ def KPOINT(vasp_type=None, grid=(24, 24, 1), target_Path=None):
             ]
             File.writelines(lines)
 
+def KPOINTS(vasp_type=None, target_Path=None):
+    if vasp_type == 'band':
+        MKdir(f"{target_Path}/preKPOINTS/", rm=True)
+        os.system(f"mv {target_Path}/* {target_Path}/preKPOINTS/.")
+        os.system(f"cp {target_Path}/preKPOINTS/POSCAR {target_Path}/preKPOINTS/POTCAR {target_Path}/.")
+        HomePath = os.getcwd()
+        os.chdir(f"{target_Path}/preKPOINTS/")
+        os.system("vaspkit -task 303")
+        os.chdir(f"{HomePath}")
+        os.system(f'cp {target_Path}/preKPOINTS/KPATH.in {target_Path}/KPOINTS')
+    
+    else:
+        os.chdir("OUTFILE/")
+        os.system("vaspkit -task 102 -kpr 0.02")
+        os.chdir("../")
+
 if __name__ == '__main__':
     
     os.system("rm -r *_f")
@@ -54,7 +70,8 @@ if __name__ == '__main__':
 
 # ========================================================    
 # ========================================================
-    KPOINT(type='Bilayer')   # KPOINTS
+    # KPOINTS_manual(type='Bilayer')   # KPOINTS
+    KPOINTS()   # KPOINTS
 #----------------------
     file_name = f"{int(layer_num)}_{atom_type}_f"
     os.system(f"mkdir {file_name}/")

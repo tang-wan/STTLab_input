@@ -66,11 +66,11 @@ class Vp_Basis_Test():
 
         Check_out_Word(f'Making subfolder')
         if SOC:
-            o_target_Path = f'{atom_type}/{basis_type}_soc_xz{theta}_mz{r:.1f}'
-            target_Path = f'{atom_type}/{basis_type}_soc_xz{theta}_mz{r:.1f}_band'
+            o_target_Path = f'{atom_type}_bulk/{basis_type}_soc_xz{theta}_mz{r:.1f}'
+            target_Path = f'{atom_type}_bulk/{basis_type}_soc_xz{theta}_mz{r:.1f}_band'
         else:
-            o_target_Path = f'{atom_type}/{basis_type}_ncl_xz{theta}_mz{r:.1f}'
-            target_Path = f'{atom_type}/{basis_type}_ncl_xz{theta}_mz{r:.1f}_band'
+            o_target_Path = f'{atom_type}_bulk/{basis_type}_ncl_xz{theta}_mz{r:.1f}'
+            target_Path = f'{atom_type}_bulk/{basis_type}_ncl_xz{theta}_mz{r:.1f}_band'
         MKdir(f'{target_Path}', rm=False)
         print()
         
@@ -179,7 +179,7 @@ class Vp_Basis_Test():
         with open(f'{target_Path}/INCAR', 'w') as W_File:
             W_File.writelines(lines)
 
-    def KPOINTS(self):
+    def OLD_KPOINTS(self):
         Check_out_Word('Making KPOINTS')
         target_Path = self.target_Path
         if os.path.isfile(f'{target_Path}/preKPOINTS/KPATH.in'):
@@ -190,6 +190,17 @@ class Vp_Basis_Test():
             Process_Word('Please run vaspkit 303 first')
             print()
             os._exit(0)
+    
+    def KPOINTS(self):
+        target_Path = self.target_Path
+        MKdir(f"{target_Path}/preKPOINTS/", rm=True)
+        os.system(f"mv {target_Path}/* {target_Path}/preKPOINTS/.")
+        os.system(f"cp {target_Path}/preKPOINTS/POSCAR {target_Path}/preKPOINTS/POTCAR {target_Path}/.")
+        HomePath = os.getcwd()
+        os.chdir(f"{target_Path}/preKPOINTS/")
+        os.system("vaspkit -task 303")
+        os.chdir(f"{HomePath}")
+        os.system(f'cp {target_Path}/preKPOINTS/KPATH.in {target_Path}/KPOINTS')
         
     def vasppbs(self, mechine, ppn):
         Check_out_Word('Making vasp6.pbs')

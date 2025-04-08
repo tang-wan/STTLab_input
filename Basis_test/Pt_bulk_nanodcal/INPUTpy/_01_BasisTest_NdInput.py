@@ -25,16 +25,21 @@ run      = True
 # ----------
 atom     = 'Pt'
 
-# basis    = 'PBE'
-basis    = 'LDA'
+basis    = 'PBE'
+# basis    = 'LDA'
 
 SOC      = False
 # SOC      = True
 
+mechine = "i91"
+ppn     = "18"
+
 if basis == 'PBE':
-    run_list = [1, 2, 3, 4, 5]
+    # run_list = [1, 2, 3, 4, 5]
+    run_list = [3]
 elif basis == 'LDA':
-    run_list = [0, 2, 3, 4, 5]
+    # run_list = [0, 2, 3, 4, 5]
+    run_list = [3]
 
 for i in run_list:
     nd_basis = basis_list[i]
@@ -49,7 +54,7 @@ for i in run_list:
     spec_atom.Read_info(
             # printTrue=False
             )
-    spec_atom.atoms_xyz(r=0.5, theta=0, phi=0, 
+    spec_atom.atoms_xyz(r=0.0, theta=0, phi=0, 
                 type='Cart'
                 )
     spec_atom.BASIS()
@@ -59,8 +64,10 @@ for i in run_list:
                         precision='High'
                         )
     
-    mechine = "dl0x"
-    ppn = "16"
+    # if SOC:
+    #     name = f"{atom}_{nd_basis[:-4:]}_SOC_basisTest"
+    # else:
+    #     name = f"{atom}_{nd_basis[:-4:]}_ncl_basisTest"
     spec_atom.ndpbs(
                     mechine = mechine,
                     ppn = ppn
