@@ -1,0 +1,47 @@
+#!/bin/bash
+#=============================================#
+# Job information
+
+#PBS -N Pd6Co2_000_SL_wSOC_scf
+
+#---------------------------------------------#
+# Running machine (ppn: process per node)
+
+#PBS -l nodes=dl0x:ppn=20
+
+#---------------------------------------------#
+# Setup environment variable
+# Use `module avail` to see more
+
+module purge
+module load nanodcal/2020B
+
+#---------------------------------------------#
+
+# input and output filename
+inputFile="scf.input"
+outputFile="scf.output"
+
+# store temporarydata to memory
+temporarydata_at_tmp=true
+
+#=============================================#
+
+cd $PBS_O_WORKDIR
+
+#--- Run your program here ---#
+
+# link temporarydata to TMPDIR if needed
+if $temporarydata_at_tmp; then
+    rm -rf ./temporarydata
+    ln -s $TMPDIR ./temporarydata
+fi
+
+# run nanodcal
+mpirun nanodcal -parallel $inputFile > $outputFile
+
+# remove ./temporarydata if it is a symbolic link
+if [ -L "./temporarydata" ]; then
+    unlink "./temporarydata"
+fi
+

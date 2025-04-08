@@ -1,0 +1,44 @@
+System = Pt bulk
+
+#--------------------------------------
+# Parallelization
+
+KPAR     = 2        # Number of workers for k-points parallelization
+NPAR     = 5        # Number of workers for bands parallelization
+
+# Start parameters for this Run
+ISTART   = 0        # Job: 0-new 1-WAVECAR 2-samecut
+ICHARG   = 11       # Initial charge density: 1-CHGCAR 2-atom 11-band/DOS
+
+# Output files
+LWAVE    = .FALSE.  # Write WAVECAR
+LORBIT   = 11       # Write DOSCAR and lm-decomposed PROCAR
+
+# Magnetism
+ISPIN    = 2        # Spin polarize: 1-No 2-Yes
+MAGMOM   = 4*0.5 
+
+#--------------------------------------
+# Electronic relaxation (ESC)
+NELM     = 200      # Max number of ESC steps
+EDIFF    = 1e-8     # Stopping criteria for ESC in eV (1e-6 or 1e-8)
+ENCUT    = 500      # Kinetic energy cutoff in eV (>500)
+PREC     = Accurate # Precision: Normal or Accurate
+ISMEAR   = 0        # Partial occupancies f_nk (0 for others or -5 for DOS)
+SIGMA    = 0.03     # Width of the smearing in eV (0.03~0.05)
+
+#--------------------------------------
+# Spin-orbit coupling
+#LSORBIT  = .TRUE.
+#LMAXMIX  = 4
+#NBANDS   = 100
+#ISYM     = 0
+
+#--------------------------------------
+# Mixer
+AMIX     = 0.2
+BMIX     = 0.00001
+AMIX_MAG = 0.8
+BMIX_MAG = 0.00001
+
+LNONCOLLINEAR = T

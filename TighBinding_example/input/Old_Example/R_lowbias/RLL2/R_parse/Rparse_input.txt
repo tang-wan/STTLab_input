@@ -1,0 +1,4 @@
+../RLL2_NL9_81/90_pi_0/Bias_totI.dat
+../RLL2_NL9_72/90_pi_0/Bias_totI.dat
+../RLL2_NL9_63/90_pi_0/Bias_totI.dat
+../RLL2_NL9_54/90_pi_0/Bias_totI.dat

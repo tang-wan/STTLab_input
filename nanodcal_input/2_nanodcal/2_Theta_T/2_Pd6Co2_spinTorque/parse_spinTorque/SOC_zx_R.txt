@@ -1,0 +1,13 @@
+../../1_Theta_E_PBE_05/2_Pd6Co2_f/000_theta/analysis/spinTorque/bulk_spin_torque.pickle
+../../1_Theta_E_PBE_05/2_Pd6Co2_f/015_theta/analysis/spinTorque/bulk_spin_torque.pickle
+../../1_Theta_E_PBE_05/2_Pd6Co2_f/030_theta/analysis/spinTorque/bulk_spin_torque.pickle
+../../1_Theta_E_PBE_05/2_Pd6Co2_f/045_theta/analysis/spinTorque/bulk_spin_torque.pickle
+../../1_Theta_E_PBE_05/2_Pd6Co2_f/060_theta/analysis/spinTorque/bulk_spin_torque.pickle
+../../1_Theta_E_PBE_05/2_Pd6Co2_f/075_theta/analysis/spinTorque/bulk_spin_torque.pickle
+../../1_Theta_E_PBE_05/2_Pd6Co2_f/090_theta/analysis/spinTorque/bulk_spin_torque.pickle
+../../1_Theta_E_PBE_05/2_Pd6Co2_f/105_theta/analysis/spinTorque/bulk_spin_torque.pickle
+../../1_Theta_E_PBE_05/2_Pd6Co2_f/120_theta/analysis/spinTorque/bulk_spin_torque.pickle
+../../1_Theta_E_PBE_05/2_Pd6Co2_f/135_theta/analysis/spinTorque/bulk_spin_torque.pickle
+../../1_Theta_E_PBE_05/2_Pd6Co2_f/150_theta/analysis/spinTorque/bulk_spin_torque.pickle
+../../1_Theta_E_PBE_05/2_Pd6Co2_f/165_theta/analysis/spinTorque/bulk_spin_torque.pickle
+../../1_Theta_E_PBE_05/2_Pd6Co2_f/180_theta/analysis/spinTorque/bulk_spin_torque.pickle

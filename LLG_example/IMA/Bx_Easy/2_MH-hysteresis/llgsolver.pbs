@@ -1,0 +1,29 @@
+#!/bin/bash
+#=============================================#
+# Job Name
+
+#PBS -N example_pbs_llgsolver
+
+#---------------------------------------------#
+# Running machine (ppn: process per node)
+
+#PBS -l nodes=i5x:ppn=1
+#PBS -j oe
+
+#---------------------------------------------#
+# Setup environment variable
+# Use `module avail` to see more
+
+module purge
+#--- Load the module you want ---#
+module load llgsolver
+
+#=============================================#
+
+cd $PBS_O_WORKDIR
+
+#--- Run your program here ---#
+
+python3 main.py > main.log
+python3 plot.py > plot.log
+

@@ -1,0 +1,29 @@
+#!/bin/bash
+#=============================================#
+# Job Name
+
+#PBS -N current
+
+#---------------------------------------------#
+# Running machine (ppn: process per node)
+
+#PBS -l nodes=i91:ppn=18
+#PBS -j oe
+
+#---------------------------------------------#
+# Setup environment variable
+# Use `module avail` to see more
+
+module purge
+#--- Load the module you want ---#
+module load junpy/develop
+
+#=============================================#
+
+cd $PBS_O_WORKDIR
+
+#--- Run your program here ---#
+
+export OMP_NUM_THREADS=1
+mpirun python3 main.py > main.log
+

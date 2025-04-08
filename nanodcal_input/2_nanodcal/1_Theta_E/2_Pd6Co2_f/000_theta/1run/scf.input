@@ -1,0 +1,36 @@
+## Descriptive name for the system
+system.name = Pd6Co2
+
+## Format for input and output of information
+calculation.control.energyUnit = eV
+calculation.control.lengthUnit = angstrom
+calculation.name = scf
+
+## Quantum mechanical description
+system.spinType = GeneralSpin
+system.orbitalType = TM_PBE_DZP
+calculation.xcFunctional.Type = GGA_PBE96
+system.neutralAtomDataDirectory = ../../../../PBE_BASIS
+calculation.spinOrbitInteraction.isIncluded = true
+
+# Positions and chemical species of the atoms
+system.centralCellVector1 = [2.38436731385304400, -1.37661511050000000,  0.00000000000000000]
+system.centralCellVector2 = [2.38436731385304400,  1.37661511050000000,  0.00000000000000000]
+system.centralCellVector3 = [0.00000000000000000,  0.00000000000000000, 39.72803368148726000]
+system.atomCoordinateFormat = cartesian
+system.atomFile = ../atoms.xyz
+
+## Accuracy of the calculation
+calculation.control.precision = high
+#calculation.realspacegrids.E_cutoff = 300 Hartree
+#calculation.k_spacegrids.L_cutoff = 160 Bohr
+#calculation.occupationFunction.temperature = 0
+
+## Speed of convergence of the algorithms
+calculation.SCF.startingMode = realRho
+calculation.SCF.mixingMode = realRho
+calculation.SCF.mixMethod = Pulay
+calculation.SCF.mixRate = 0.005
+calculation.SCF.maximumSteps = 600
+calculation.SCF.monitoredVariableName = {'realSpaceRho','hMatrix','rhoMatrix','totalEnergy','bandEnergy','gridCharge','orbitalCharge','spinPolar'}
+calculation.SCF.convergenceCriteria = {1e-6, 1e-6, 1e-6, 1e-6, [],[],[],[]}
