@@ -29,12 +29,13 @@ spec_NL_set = "ALL"                     # Run all the NLL set
 spec_NL = "ALL"                     # Run all the combination of this NLL
 
 
-init_Angle = 0   # The initial angle of γL iteration (unit: degree)
-finl_Angle = 90  # The final angle of γL iteration (unit: degree)
+init_Angle = 90   # The initial angle of γL iteration (unit: degree)
+finl_Angle = 180  # The final angle of γL iteration (unit: degree)
 sep_Angle  = 45  # The angle interval of γL iteration (unit: degree)
 ## If init_Angle and finl_Angle are the same, which mean running the specific angle of γL
 
-γLI_Angle, γR_Angle = (180, 0)  # Setting the γLI and γR
+γLI_Angle, γR_Angle = (0, 90)  
+# Setting the γLI (first SRO) and γR (LSMO site)
 
 # ========================================================
 # >>>>> Setting left lead <<<<<
@@ -46,20 +47,21 @@ AFM = True
 ##  True: Turn on AFM  => AFM
 NB, PhiB, dB = 2, 0.6, 0.2
 γB = 0.0                    # Only use for NI
-γBL, γBR = 180, 0           # Only use for AFM
+γBL, γBR = γLI_Angle, 180           # Only use for AFM
+# Setting the γBL (SRO site) and γBR (LSMO site)
 
 # >>>>> Setting for right lead <<<<<
 NR, eR = 2, (2.6, 6.0)
 # ========================================================
 
-jobMach = 'dl2x'
-jobPPN  = '14'
+jobMach = 'i91'
+jobPPN  = '18'
 # ========================================================
 # ================= Don't need to change =================
 HomePath = os.getcwd()
 for NLL in NLL_list:
     NLL_Combination = Sum_Combination(NLL, Ntot)
-    jobName = f'current_RLL{NLL}'
+    jobName = f'current_Ntot{Ntot}_RLL{NLL}'
     for i, NL_set in enumerate(NLL_Combination):
         if (NL_set == spec_NL_set) or (spec_NL_set == "ALL"):
             print()
