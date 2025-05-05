@@ -240,7 +240,7 @@ class TB_JPinput():
     def MK_main_BC(self, μL, μR_bias,
             γL, γLI, γR
             ):
-        
+        γL, γLI, γR = γL-90, γLI-90, γR-90
         γL  = '(np.pi/180)*' + str(γL)
         γLI = '(np.pi/180)*' + str(γLI) 
         γR  = '(np.pi/180)*' + str(γR) 
