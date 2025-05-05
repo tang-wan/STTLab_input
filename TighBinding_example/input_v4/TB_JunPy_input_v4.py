@@ -53,6 +53,10 @@ class TB_JPinput():
                    AFM
                 ):
         targetPath = self.targetPath
+        
+        # Out-plane is 0 degree or 180 degree, In-plane is 90 degree
+        γB = γB-90
+        γBL, γBR = γBL-90, γBR-90
 
         def Initial():
             with open(f"{targetPath}/main.py", 'w') as W_File:
@@ -137,8 +141,8 @@ class TB_JPinput():
                        f'    NB = {NB}\n',
                         '    NBL = int(NB/2)\n',
                         '    NBR = int(NB/2)\n',
-                       f'    γBL = (np.pi/180)*{γBL}\n',
-                       f'    γBR = (np.pi/180)*{γBR}\n',
+                       f'    γBL = (np.pi/180)*({γBL})\n',
+                       f'    γBR = (np.pi/180)*({γBR})\n',
                        f'    PhiB = {PhiB}\n',
                        f'    dB = {dB}\n',
                         '\n',
@@ -242,7 +246,7 @@ class TB_JPinput():
         γR  = '(np.pi/180)*' + str(γR) 
 
         # γL  = 'np.pi/180*90'
-        # γLI = 'np.pi/180*' + str(γLI), 
+        # γLI = 'np.pi/180*' + str(γLI),
 
         targetPath = self.targetPath
         NL_set     = self.NL_set
@@ -422,19 +426,21 @@ class TB_JPinput():
 if __name__ == '__main__':
 
     biases = 'np.linspace(0.01, 0.05, 5)'
-    angle  = (90, 180, 0)
-    NL_set = (5, 4)
+    angle  = (0, 90, 180)
+    NL_set = (9,)
 
-    run = True
+    run = False
 
     TB_test = TB_JPinput(angleTuple = angle, 
                          NL_group   = NL_set,
                          NL_set     = NL_set)
     TB_test.MK_main_BD(HoppingE=0.83,
                        NL=2, eL=(2.6, 6.0),
-                       NB=2, PhiB = 0.6, γB = 0.2, dB = 0.0,
+                       NB=2, PhiB = 0.6, dB = 0.0,
+                       γB=90,
+                       γBL=180, γBR=0, # Use for AFM
                        NR=2, eR=(2.6, 6.0),
-                       AFM=False
+                       AFM=True
                        )
     TB_test.MK_main_BC(μL      = 0,
                        μR_bias = biases,
